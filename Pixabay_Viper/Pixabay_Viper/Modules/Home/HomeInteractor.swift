@@ -16,10 +16,10 @@ final class HomeInteractor: PresenterToInteractorHomeProtocol {
     var presenter: InteractorToPresenterHomeProtocol?
     var images: [Image]?
 
-    func fetchImages(){
+    func fetchImages(category: Category, query: String?){
         Task {
             do {
-                let response = try await NetworkManager.shared.getImages()
+                let response = try await NetworkManager.shared.getImages(category: category, query: query)
                 self.images = response
                 presenter?.didFetchImages(with: .success(response))
                 

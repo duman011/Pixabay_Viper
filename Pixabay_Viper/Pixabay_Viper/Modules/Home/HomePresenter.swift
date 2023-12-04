@@ -16,10 +16,15 @@ final class HomePresenter: ViewToPresenterHomeProtocol{
     var router: PresenterToRouterHomeProtocol?
 
     var imagesList: [Image]?
+    var selectedCategory: Category = .all
     
     // MARK: Inputs from view
     func viewDidLoad() {
-        interactor?.fetchImages()
+        interactor?.fetchImages(category: selectedCategory, query: nil)
+    }
+    
+    func searchImages(query: String?) {
+        interactor?.fetchImages(category: selectedCategory, query: query)
     }
     
     func numberOfRowsInSection() -> Int {

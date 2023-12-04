@@ -125,16 +125,30 @@ extension HomeVC : PresenterToViewHomeProtocol {
 }
 
 extension HomeVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty { presenter?.searchImages(query: nil) }
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+        presenter?.searchImages(query: searchBar.text)
+        searchBar.text?.removeAll()
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         let vc = CategorySelectionVC()
+        vc.delegate = self
         if let sheet = vc.sheetPresentationController {
             sheet.prefersGrabberVisible = true
             sheet.detents = [.medium(), .large()]
         }
         present(vc, animated: true)
+    }
+}
+
+extension HomeVC: CategorySelectionVCDelegate {
+    func categorySelected(_ category: Category) {
+        presenter?.selectedCategory = category
+        presenter?.searchImages(query: nil)
+        searchBar.setImage(category.icon, for: .bookmark, state: .normal)
     }
 }

@@ -7,12 +7,19 @@
 
 import UIKit
 
+protocol CategorySelectionVCDelegate: AnyObject {
+    func categorySelected(_ category: Category)
+}
+
 class CategorySelectionVC: UIViewController {
+    
+    weak var delegate: CategorySelectionVCDelegate?
     
     //MARK: - UI Elements
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 5
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
@@ -27,20 +34,21 @@ class CategorySelectionVC: UIViewController {
         view.backgroundColor = .black.withAlphaComponent(0.9)
         view.addSubview(collectionView)
         collectionView.backgroundColor = .clear
-        collectionView.fillSuperview(padding: .init(top: 20,
-                                                   leading: 10,
-                                                   trailing: 10))
+        collectionView.fillSuperview(padding: .init(top: 20))
     }
 
 }
 
 extension CategorySelectionVC: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.categorySelected(Category.allCases[indexPath.item])
+        dismiss(animated: true)
+    }
 }
 
 extension CategorySelectionVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: (collectionView.frame.width / 2) - 5, height: 100)
+        .init(width: (collectionView.frame.width / 3) - 5, height: 100)
     }
 }
 

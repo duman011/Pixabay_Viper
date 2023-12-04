@@ -8,6 +8,7 @@
 import UIKit
 
 enum Category: String, CaseIterable {
+    case all = "All"
     case backgrounds = "Backgrounds"
     case fashion = "Fashion"
     case nature = "Nature"
@@ -33,6 +34,8 @@ enum Category: String, CaseIterable {
     
     var icon: UIImage? {
         switch self {
+        case.all:
+            UIImage(systemName: "line.3.horizontal.decrease.circle")
         case .backgrounds:
             UIImage(systemName: "photo.artframe")
         case .fashion:

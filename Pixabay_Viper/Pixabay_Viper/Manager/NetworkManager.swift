@@ -21,8 +21,8 @@ final class NetworkManager {
     private init() {}
     
     // MARK: - Fetch Images
-    func getImages() async throws -> [Image] {
-        let endpoint =  PixabayAPIEndpoint.baseURL.rawValue + PixabayAPIEndpoint.API_KEY.rawValue + PixabayAPIEndpoint.imageType.rawValue + imageType.photo.rawValue
+    func getImages(category: Category, query: String? = nil) async throws -> [Image] {
+        let endpoint =  APIEndpoint.baseURL.rawValue + APIEndpoint.category.rawValue + category.rawValue.lowercased() + APIEndpoint.query.rawValue + (query ?? "")
         
         guard let url = URL(string: endpoint) else { throw PixabayError.invalidUrl }
         
