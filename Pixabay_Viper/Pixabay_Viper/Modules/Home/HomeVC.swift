@@ -28,6 +28,20 @@ final class HomeVC: UIViewController {
         return collectionView
     }()
     
+    lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search an image"
+        searchBar.searchTextField.backgroundColor = .clear
+        searchBar.showsBookmarkButton = true
+        searchBar.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle"), for: .bookmark, state: .normal)
+        searchBar.layer.borderWidth = 1
+        searchBar.layer.borderColor = UIColor.systemGray.cgColor
+        searchBar.layer.cornerRadius = 20
+        searchBar.clipsToBounds = true
+        searchBar.delegate = self
+        return searchBar
+    }()
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +54,19 @@ final class HomeVC: UIViewController {
 extension HomeVC {
     private func setupUI() {
         navigationItem.title = "Pixabay API"
-        view.backgroundColor = .purple
+        view.backgroundColor = .systemBackground
         
-        view.addSubview(collectionView)
-        collectionView.fillSuperview()
+        view.addSubviewsExt(searchBar, collectionView)
+        searchBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, 
+                         leading: view.safeAreaLayoutGuide.leadingAnchor,
+                         trailing: view.safeAreaLayoutGuide.trailingAnchor,
+                         padding: .init(leading: 10, trailing: 10))
+        
+        collectionView.anchor(top: searchBar.bottomAnchor,
+                              leading: view.safeAreaLayoutGuide.leadingAnchor,
+                              bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                              trailing: view.safeAreaLayoutGuide.trailingAnchor,
+                              padding: .init(top: 10, leading: 10, trailing: 10))
     }
 }
 
@@ -71,7 +94,7 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
 extension HomeVC: UICollectionViewDelegateFlowLayout  {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.width)
+        return CGSize(width: self.collectionView.frame.width / 2 - 10, height: self.collectionView.frame.width / 2 - 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -98,5 +121,20 @@ extension HomeVC : PresenterToViewHomeProtocol {
         DispatchQueue.main.async {
             self.indicatorViewExt(animate: animate)
         }
+    }
+}
+
+extension HomeVC: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        let vc = CategorySelectionVC()
+        if let sheet = vc.sheetPresentationController {
+            sheet.prefersGrabberVisible = true
+            sheet.detents = [.medium(), .large()]
+        }
+        present(vc, animated: true)
     }
 }

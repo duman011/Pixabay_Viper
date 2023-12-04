@@ -24,6 +24,7 @@ struct Image: Codable {
     let type: String
     let tags: String
     let previewURL: String
+    let webformatURL: String
     let largeImageURL: String
     let views: Int
     let downloads, likes, comments: Int
@@ -33,7 +34,7 @@ struct Image: Codable {
     let collections: Int
 
     enum CodingKeys: String, CodingKey {
-        case id, pageURL, type, tags, previewURL, largeImageURL, views, downloads, likes, comments
+        case id, pageURL, type, tags, previewURL, webformatURL, largeImageURL, views, downloads, likes, comments
         case userID = "user_id"
         case user, userImageURL, collections
        

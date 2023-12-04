@@ -29,6 +29,8 @@ final class ImageDetailView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.red.cgColor
         presenter?.viewDidLoad()
     }
 }
@@ -60,7 +62,7 @@ extension ImageDetailView {
         imageView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                              leading: view.leadingAnchor,
                              trailing: view.trailingAnchor,
-                             size: .init(heightSize: 150))
+                         size: .init(heightSize: view.frame.height / 2))
         
         imageLabel.anchor(top: imageView.bottomAnchor,
                          leading: view.leadingAnchor,

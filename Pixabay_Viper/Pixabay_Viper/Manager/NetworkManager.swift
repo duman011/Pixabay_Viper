@@ -24,15 +24,11 @@ final class NetworkManager {
     func getImages() async throws -> [Image] {
         let endpoint =  PixabayAPIEndpoint.baseURL.rawValue + PixabayAPIEndpoint.API_KEY.rawValue + PixabayAPIEndpoint.imageType.rawValue + imageType.photo.rawValue
         
-        guard let url = URL(string: endpoint) else {
-            throw PixabayError.invalidUrl
-        }
+        guard let url = URL(string: endpoint) else { throw PixabayError.invalidUrl }
         
         let (data, response) = try await URLSession.shared.data(from: url)
         
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw PixabayError.invalidResponse
-        }
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw PixabayError.invalidResponse }
         
         do {
             return try decoder.decode(ImageResponse.self, from: data).images

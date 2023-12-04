@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58B3EE852B1DF021004A783B /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3EE842B1DF021004A783B /* UIImage+Ext.swift */; };
+		58B3EE872B1E06E4004A783B /* CategorySelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3EE862B1E06E4004A783B /* CategorySelectionVC.swift */; };
+		58B3EE892B1E0896004A783B /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3EE882B1E0896004A783B /* CategoryCollectionCell.swift */; };
+		58B3EE8B2B1E1F5C004A783B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3EE8A2B1E1F5C004A783B /* Category.swift */; };
 		8319D84D2B1DD0250007A088 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319D84C2B1DD0250007A088 /* UIViewController+Ext.swift */; };
 		838B6A0D2B1D154000FB0F13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838B6A0C2B1D154000FB0F13 /* AppDelegate.swift */; };
 		838B6A0F2B1D154000FB0F13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838B6A0E2B1D154000FB0F13 /* SceneDelegate.swift */; };
@@ -33,6 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58B3EE842B1DF021004A783B /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		58B3EE862B1E06E4004A783B /* CategorySelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionVC.swift; sourceTree = "<group>"; };
+		58B3EE882B1E0896004A783B /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
+		58B3EE8A2B1E1F5C004A783B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		8319D84C2B1DD0250007A088 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		838B6A092B1D154000FB0F13 /* Pixabay_Viper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pixabay_Viper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		838B6A0C2B1D154000FB0F13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				838B6A312B1D17DB00FB0F13 /* PixabayModel.swift */,
+				58B3EE8A2B1E1F5C004A783B /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,6 +170,7 @@
 				838B6A2B2B1D175300FB0F13 /* UIStackView+Ext.swift */,
 				838B6A2A2B1D175300FB0F13 /* UIView+Ext.swift */,
 				8319D84C2B1DD0250007A088 /* UIViewController+Ext.swift */,
+				58B3EE842B1DF021004A783B /* UIImage+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -174,6 +184,7 @@
 				838B6A382B1D295600FB0F13 /* HomeInteractor.swift */,
 				838B6A372B1D295600FB0F13 /* HomeRouter.swift */,
 				838B6A3A2B1D295600FB0F13 /* HomeVC.swift */,
+				58B3EE862B1E06E4004A783B /* CategorySelectionVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -194,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				838B6A4C2B1D356700FB0F13 /* ImageCollectionCell.swift */,
+				58B3EE882B1E0896004A783B /* CategoryCollectionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -277,11 +289,14 @@
 				838B6A0D2B1D154000FB0F13 /* AppDelegate.swift in Sources */,
 				838B6A462B1D2C0500FB0F13 /* ImageDetailView.swift in Sources */,
 				838B6A482B1D2C0500FB0F13 /* ImageDetailPresenter.swift in Sources */,
+				58B3EE892B1E0896004A783B /* CategoryCollectionCell.swift in Sources */,
 				838B6A472B1D2C0500FB0F13 /* ImageDetailProtocol.swift in Sources */,
 				838B6A3D2B1D295600FB0F13 /* HomeInteractor.swift in Sources */,
 				838B6A2D2B1D175300FB0F13 /* UIView+Ext.swift in Sources */,
 				838B6A302B1D177E00FB0F13 /* NetworkManager.swift in Sources */,
 				838B6A322B1D17DB00FB0F13 /* PixabayModel.swift in Sources */,
+				58B3EE872B1E06E4004A783B /* CategorySelectionVC.swift in Sources */,
+				58B3EE8B2B1E1F5C004A783B /* Category.swift in Sources */,
 				838B6A3B2B1D295600FB0F13 /* HomeProtocols.swift in Sources */,
 				838B6A2E2B1D175300FB0F13 /* UIStackView+Ext.swift in Sources */,
 				838B6A4A2B1D2C0500FB0F13 /* ImageDetailRouter.swift in Sources */,
@@ -289,6 +304,7 @@
 				838B6A282B1D171900FB0F13 /* PixabayError.swift in Sources */,
 				838B6A0F2B1D154000FB0F13 /* SceneDelegate.swift in Sources */,
 				838B6A3C2B1D295600FB0F13 /* HomeRouter.swift in Sources */,
+				58B3EE852B1DF021004A783B /* UIImage+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
