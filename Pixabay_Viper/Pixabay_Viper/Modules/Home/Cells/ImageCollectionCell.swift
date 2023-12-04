@@ -41,9 +41,6 @@ class ImageCollectionCell: UICollectionViewCell {
         post.layer.cornerRadius = 30
         post.contentMode = .scaleAspectFill
         post.clipsToBounds = true
-        
-       
- 
 
         return post
     }()
@@ -57,7 +54,7 @@ class ImageCollectionCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+  
     // MARK: - UI Configuration
     private func configureUI() {
         layer.cornerRadius = 30
@@ -73,6 +70,10 @@ class ImageCollectionCell: UICollectionViewCell {
     
     private func configureUserImagePost() {
         userImagePost.fillSuperview(padding: .init(top: 10, left: 10, bottom: 10, right: 10))
+        let gradient = UIImage.gradientImage(bounds: bounds, colors: [.gradientBorder1, .gradientBorder2])
+        let gradientColor = UIColor(patternImage: gradient)
+        userImagePost.layer.borderColor = gradientColor.cgColor
+        userImagePost.layer.borderWidth = 3
     }
     private func configureUserContainerView() {
         userContainerView.anchor(leading: userImagePost.leadingAnchor,
@@ -86,22 +87,9 @@ class ImageCollectionCell: UICollectionViewCell {
     
     private func configureUserImage() {
         userImage.anchor(leading: userContainerView.leadingAnchor,
-                         padding: .init(leading:15),
+                         padding: .init(leading:10),
                          size: .init(width: 50, height: 50))
         userImage.centerYInSuperview()
-        
-        let gradient = CAGradientLayer()
-        gradient.frame =  CGRect(origin: CGPointZero, size: self.userImage.frame.size)
-        gradient.colors = [UIColor.blue.cgColor, UIColor.green.cgColor]
-
-        let shape = CAShapeLayer()
-        shape.lineWidth = 2
-        shape.path = UIBezierPath(rect: self.userImage.bounds).cgPath
-        shape.strokeColor = UIColor.black.cgColor
-        shape.fillColor = UIColor.clear.cgColor
-        gradient.mask = shape
-
-        self.userImage.layer.addSublayer(gradient)
     }
     
     private func configureUserName() {
