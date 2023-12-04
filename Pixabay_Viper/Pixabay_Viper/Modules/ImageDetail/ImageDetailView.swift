@@ -19,9 +19,106 @@ final class ImageDetailView: UIViewController {
         return imageView
     }()
     
-    private lazy var imageLabel: UILabel = {
+    private lazy var imageTags: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        return label
+    }()
+    
+    lazy var userImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 25
+        return imageView
+    }()
+    
+    lazy var userName: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    lazy var statisticsStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [
+            viewsImage,
+            viewsCount,
+            downloadsImage,
+            downloadsCount,
+            collectionsImage,
+            collectionsCount,
+            likesImage,
+            likesCount,
+            commentsImage,
+            commentsCount
+        ])
+        stack.axis = .horizontal
+        stack.distribution = .equalSpacing
+        return stack
+    }()
+    
+    lazy var viewsImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "eye.circle")
+        imageView.anchor(size: .init(width: 35, height: 35))
+        return imageView
+    }()
+    
+    lazy var viewsCount: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    lazy var downloadsImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "arrow.down.circle")
+        imageView.anchor(size: .init(width: 35, height: 35))
+        return imageView
+    }()
+    
+    lazy var downloadsCount: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    lazy var collectionsImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "bookmark.circle")
+        imageView.anchor(size: .init(width: 35, height: 35))
+        return imageView
+    }()
+    
+    lazy var collectionsCount: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    lazy var likesImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "heart.circle")
+        imageView.anchor(size: .init(width: 35, height: 35))
+        return imageView
+    }()
+    
+    lazy var likesCount: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    lazy var commentsImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "bubble.circle")
+        imageView.anchor(size: .init(width: 35, height: 35))
+        return imageView
+    }()
+    
+    lazy var commentsCount: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
@@ -29,8 +126,6 @@ final class ImageDetailView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.red.cgColor
         presenter?.viewDidLoad()
     }
 }
@@ -39,15 +134,23 @@ final class ImageDetailView: UIViewController {
 
 extension ImageDetailView: PresenterToViewImageDetailProtocol {
     func onGetDataFromURLSuccess(_ image: Image) {
-        print("View receives the response from Presenter and updates itself.")
-        imageLabel.text = image.tags
         imageView.downloadImage(fromURL: image.largeImageURL)
+        
+        viewsCount.text = image.views.description
+        downloadsCount.text = image.downloads.description
+        collectionsCount.text = image.collections.description
+        likesCount.text = image.likes.description
+        commentsCount.text = image.comments.description
+        
+        userImage.downloadImage(fromURL: image.userImageURL)
+        userName.text = image.user
+        imageTags.text = "Tags: " + image.tags
         self.navigationItem.title = "Image Detail"
     }
     
     func onGetDataFromURLFailure(_ image: Image) {
         print("View receives the response from Presenter and updates itself.")
-        imageLabel.text = "Image Gelmedi Error !"
+        imageTags.text = "Image Gelmedi Error !"
         self.navigationItem.title = "Image Gelmedi Error"
     }
 }
@@ -57,15 +160,34 @@ extension ImageDetailView: PresenterToViewImageDetailProtocol {
 extension ImageDetailView {
     private func setupUI() {
         view.backgroundColor = .secondarySystemBackground
-        view.addSubviewsExt(imageView, imageLabel)
+        view.addSubviewsExt(imageView, imageTags, userImage, userName,statisticsStackView)
         
         imageView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                             leading: view.leadingAnchor,
-                             trailing: view.trailingAnchor,
-                         size: .init(heightSize: view.frame.height / 2))
-        
-        imageLabel.anchor(top: imageView.bottomAnchor,
                          leading: view.leadingAnchor,
-                         trailing: view.trailingAnchor)
+                         trailing: view.trailingAnchor,
+                         size: .init(heightSize: view.frame.height / 2.5))
+        
+        
+        
+        statisticsStackView.anchor(top: imageView.bottomAnchor,
+                                   leading: view.safeAreaLayoutGuide.leadingAnchor,
+                                   trailing: view.safeAreaLayoutGuide.trailingAnchor)
+        
+        userImage.anchor(top: statisticsStackView.bottomAnchor,
+                         leading: view.safeAreaLayoutGuide.leadingAnchor,
+                         padding: .init(top: 10, leading: 10),
+                         size: .init(width: 50, height: 50))
+        userName.anchor(leading: userImage.trailingAnchor,
+                        padding: .init(leading: 10))
+        userName.centerYAnchor.constraint(equalTo:userImage.centerYAnchor).isActive = true
+        
+        imageTags.anchor(top: userImage.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         trailing: view.trailingAnchor,
+                         padding: .init(top: 10,
+                                        leading: 10,
+                                        trailing: 20))
+        
+        
     }
 }

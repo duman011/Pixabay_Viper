@@ -60,7 +60,10 @@ class CategoryCollectionCell: UICollectionViewCell {
     
     func updateUI(_ category: Category){
         categoryTitle.text = category.title
-        categoryIcon.image = category.icon?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
+
+        categoryIcon.image = category.icon?.withTintColor(.gradientBorder1, renderingMode: .alwaysOriginal).withConfiguration(configuration)
+    
     }
     
 }

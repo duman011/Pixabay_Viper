@@ -15,7 +15,6 @@ class ImageCollectionCell: UICollectionViewCell {
     lazy var userContainerView: UIView = {
         let container = UIView()
         container.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        container.layer.cornerRadius = 24
         return container
     }()
     

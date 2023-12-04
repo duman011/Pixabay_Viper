@@ -52,10 +52,9 @@ final class HomeVC: UIViewController {
 
 // MARK: - UI Setup
 extension HomeVC {
-    private func setupUI() {
-        navigationItem.title = "Pixabay API"
+    private func setupUI() {      
+        configureNavTitle()
         view.backgroundColor = .systemBackground
-        
         view.addSubviewsExt(searchBar, collectionView)
         searchBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, 
                          leading: view.safeAreaLayoutGuide.leadingAnchor,
@@ -67,6 +66,23 @@ extension HomeVC {
                               bottom: view.safeAreaLayoutGuide.bottomAnchor,
                               trailing: view.safeAreaLayoutGuide.trailingAnchor,
                               padding: .init(top: 10, leading: 10, trailing: 10))
+    }
+    
+    private func configureNavTitle() {
+        let titleLabel = UILabel()
+        titleLabel.text = "Pixabay API"
+
+        if let customFont = UIFont(name: "Agbalumo-Regular", size: 30) {
+            titleLabel.font = customFont
+       
+            self.navigationItem.titleView = titleLabel
+            
+            let gradient = UIImage.gradientImage(bounds: view.bounds, colors: [.gradientBorder1, .gradientBorder2])
+            let gradientColor = UIColor(patternImage: gradient)
+            titleLabel.textColor = gradientColor
+      
+        }
+       
     }
 }
 
