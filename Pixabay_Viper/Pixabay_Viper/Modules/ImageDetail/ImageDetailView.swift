@@ -39,24 +39,6 @@ final class ImageDetailView: UIViewController {
         return label
     }()
     
-    lazy var statisticsStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [
-            viewsImage,
-            viewsCount,
-            downloadsImage,
-            downloadsCount,
-            collectionsImage,
-            collectionsCount,
-            likesImage,
-            likesCount,
-            commentsImage,
-            commentsCount
-        ])
-        stack.axis = .horizontal
-        stack.distribution = .equalSpacing
-        return stack
-    }()
-    
     lazy var viewsImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "eye.circle")
@@ -160,20 +142,22 @@ extension ImageDetailView: PresenterToViewImageDetailProtocol {
 extension ImageDetailView {
     private func setupUI() {
         view.backgroundColor = .secondarySystemBackground
-        view.addSubviewsExt(imageView, imageTags, userImage, userName,statisticsStackView)
+        view.addSubviewsExt(imageView,
+                            imageTags,
+                            userImage,
+                            userName,
+                            viewsImage,
+                            viewsCount,
+                            downloadsImage,
+                            downloadsCount,
+                            collectionsImage,
+                            collectionsCount,
+                            likesImage,
+                            likesCount,
+                            commentsImage,
+                            commentsCount)
         
-        imageView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                         leading: view.leadingAnchor,
-                         trailing: view.trailingAnchor,
-                         size: .init(heightSize: view.frame.height / 2.5))
-        
-        
-        
-        statisticsStackView.anchor(top: imageView.bottomAnchor,
-                                   leading: view.safeAreaLayoutGuide.leadingAnchor,
-                                   trailing: view.safeAreaLayoutGuide.trailingAnchor)
-        
-        userImage.anchor(top: statisticsStackView.bottomAnchor,
+        userImage.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                          leading: view.safeAreaLayoutGuide.leadingAnchor,
                          padding: .init(top: 10, leading: 10),
                          size: .init(width: 50, height: 50))
@@ -181,7 +165,52 @@ extension ImageDetailView {
                         padding: .init(leading: 10))
         userName.centerYAnchor.constraint(equalTo:userImage.centerYAnchor).isActive = true
         
-        imageTags.anchor(top: userImage.bottomAnchor,
+        imageView.anchor(top: userImage.bottomAnchor,
+                         leading: view.safeAreaLayoutGuide.leadingAnchor,
+                         trailing: view.safeAreaLayoutGuide.trailingAnchor,
+                         size: .init(heightSize: view.frame.height / 2.5))
+        
+        viewsImage.anchor(top: imageView.bottomAnchor,
+                          leading: view.safeAreaLayoutGuide.leadingAnchor,
+                          padding: .init(leading: 10))
+        
+        viewsCount.anchor(top: imageView.bottomAnchor,
+                          leading: viewsImage.trailingAnchor,
+                          bottom: viewsImage.bottomAnchor)
+        
+        downloadsImage.anchor(top: imageView.bottomAnchor,
+                              leading: viewsCount.trailingAnchor,
+                              padding: .init(leading: 12))
+        
+        downloadsCount.anchor(top: imageView.bottomAnchor,
+                              leading: downloadsImage.trailingAnchor,
+                              bottom: downloadsImage.bottomAnchor)
+        
+        collectionsImage.anchor(top: imageView.bottomAnchor,
+                                leading: downloadsCount.trailingAnchor,
+                                padding: .init(leading: 12))
+        
+        collectionsCount.anchor(top: imageView.bottomAnchor,
+                                leading: collectionsImage.trailingAnchor,
+                                bottom: collectionsImage.bottomAnchor)
+        
+        likesImage.anchor(top: imageView.bottomAnchor,
+                          leading: collectionsCount.trailingAnchor,
+                          padding: .init(leading: 12))
+        
+        likesCount.anchor(top: imageView.bottomAnchor,
+                          leading: likesImage.trailingAnchor,
+                          bottom: likesImage.bottomAnchor)
+        
+        commentsImage.anchor(top: imageView.bottomAnchor,
+                             leading: likesCount.trailingAnchor,
+                             padding: .init(leading: 12))
+        
+        commentsCount.anchor(top: imageView.bottomAnchor,
+                             leading: commentsImage.trailingAnchor,
+                             bottom: commentsImage.bottomAnchor)
+        
+        imageTags.anchor(top: viewsImage.bottomAnchor,
                          leading: view.leadingAnchor,
                          trailing: view.trailingAnchor,
                          padding: .init(top: 10,

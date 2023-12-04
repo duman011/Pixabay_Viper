@@ -88,6 +88,16 @@ extension HomeVC {
 
 // MARK: - UITableView Delegate & Data Source
 extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let presenter {
+            let lastCellIndex = presenter.imagesList.count - 1
+            if indexPath.item == lastCellIndex {
+                presenter.currentPage += 1
+                presenter.searchImages()
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.numberOfRowsInSection() ?? 0
     }
@@ -96,7 +106,7 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
         guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionCell.identifier, for: indexPath) as? ImageCollectionCell else {
             return UICollectionViewCell()
         }
-        guard let image = presenter?.imagesList?[indexPath.item] else {
+        guard let image = presenter?.imagesList[indexPath.item] else {
             return UICollectionViewCell()
         }
         cell.updateUI(image)
@@ -142,11 +152,16 @@ extension HomeVC : PresenterToViewHomeProtocol {
 
 extension HomeVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty { presenter?.searchImages(query: nil) }
+        if searchText.isEmpty {
+            presenter?.searchText = searchText
+            presenter?.removeLastResults()
+            presenter?.searchImages()
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        presenter?.searchImages(query: searchBar.text)
+        presenter?.removeLastResults()
+        presenter?.searchImages()
         searchBar.text?.removeAll()
     }
     
@@ -164,7 +179,9 @@ extension HomeVC: UISearchBarDelegate {
 extension HomeVC: CategorySelectionVCDelegate {
     func categorySelected(_ category: Category) {
         presenter?.selectedCategory = category
-        presenter?.searchImages(query: nil)
+        presenter?.removeLastResults()
+        presenter?.searchText.removeAll()
+        presenter?.searchImages()
         searchBar.setImage(category.icon, for: .bookmark, state: .normal)
     }
 }

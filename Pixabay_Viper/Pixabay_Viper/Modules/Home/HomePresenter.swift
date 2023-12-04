@@ -15,29 +15,28 @@ final class HomePresenter: ViewToPresenterHomeProtocol{
     var interactor: PresenterToInteractorHomeProtocol?
     var router: PresenterToRouterHomeProtocol?
 
-    var imagesList: [Image]?
+    var imagesList: [Image] = []
     var selectedCategory: Category = .all
+    var currentPage = 1
+    var searchText: String = ""
     
     // MARK: Inputs from view
     func viewDidLoad() {
-        interactor?.fetchImages(category: selectedCategory, query: nil)
+        interactor?.fetchImages(category: selectedCategory, query: nil, currentPage: currentPage)
     }
     
-    func searchImages(query: String?) {
-        interactor?.fetchImages(category: selectedCategory, query: query)
+    func removeLastResults() {
+        currentPage = 1
+        imagesList.removeAll()
     }
     
-    func numberOfRowsInSection() -> Int {
-        guard let images = self.imagesList else {
-            return 0
-        }
-        
-        return images.count
+    func searchImages() {
+        interactor?.fetchImages(category: selectedCategory, query: searchText, currentPage: currentPage)
     }
     
-    func didSelectRow(at index: Int) {
-        interactor?.retrieveImage(at: index)
-    }
+    func numberOfRowsInSection() -> Int { return imagesList.count }
+    
+    func didSelectRow(at index: Int) { router?.pushToImageDetail(on: view!, with: imagesList[index]) }
 }
 
 
@@ -48,15 +47,13 @@ extension HomePresenter: InteractorToPresenterHomeProtocol {
         view?.indicatorView(animate: true)
         switch result {
         case .success(let images):
-            self.imagesList = images
+//            self.imagesList = images
+            self.imagesList.append(contentsOf: images)
+            view?.indicatorView(animate: false)
             view?.onDataFetchSuccess()
         case .failure(let error):
+            view?.indicatorView(animate: false)
             view?.onDataFetchFailure(error)
         }
-        view?.indicatorView(animate: false)
-    }
-    
-    func getImageSuccess(_ image: Image) {
-        router?.pushToImageDetail(on: view!, with: image)
     }
 }

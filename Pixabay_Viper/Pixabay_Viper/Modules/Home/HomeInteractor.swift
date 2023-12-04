@@ -10,31 +10,17 @@ import Foundation
 
 final class HomeInteractor: PresenterToInteractorHomeProtocol {
    
-    
-   
     // MARK: Properties
     var presenter: InteractorToPresenterHomeProtocol?
-    var images: [Image]?
 
-    func fetchImages(category: Category, query: String?){
+    func fetchImages(category: Category, query: String?, currentPage: Int) {
         Task {
             do {
-                let response = try await NetworkManager.shared.getImages(category: category, query: query)
-                self.images = response
+                let response = try await NetworkManager.shared.getImages(category: category, query: query, currentPage: currentPage)
                 presenter?.didFetchImages(with: .success(response))
-                
             } catch {
                 presenter?.didFetchImages(with: .failure(error))
             }
         }
-    }
-    
-    func retrieveImage(at index: Int) {
-        guard let images = self.images, images.indices.contains(index) else {
-            print("Couldn't retrieve quote by index")
-       
-            return
-        }
-        self.presenter?.getImageSuccess(self.images![index])
     }
 }

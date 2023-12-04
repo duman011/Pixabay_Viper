@@ -15,14 +15,18 @@ protocol ViewToPresenterHomeProtocol: AnyObject {
     var interactor: PresenterToInteractorHomeProtocol? { get set }
     var router: PresenterToRouterHomeProtocol? { get set }
     
-    var imagesList: [Image]? { get set }
+    var imagesList: [Image] { get set }
     var selectedCategory: Category { get set }
+    var currentPage: Int { get set }
+    var searchText: String { get set}
+    
+    func removeLastResults()
     func viewDidLoad()
     
     func numberOfRowsInSection() -> Int
     func didSelectRow(at index: Int)
     
-    func searchImages(query: String?)
+    func searchImages()
 }
 
 // MARK: View Output (Presenter -> View)
@@ -35,15 +39,12 @@ protocol PresenterToViewHomeProtocol: AnyObject {
 // MARK: Interactor Input (Presenter -> Interactor)
 protocol PresenterToInteractorHomeProtocol: AnyObject {
     var presenter: InteractorToPresenterHomeProtocol? { get set }
-    func fetchImages(category: Category, query: String?)
-    func retrieveImage(at index: Int)
+    func fetchImages(category: Category, query: String?, currentPage: Int)
 }
 
 // MARK: Interactor Output (Interactor -> Presenter)
 protocol InteractorToPresenterHomeProtocol: AnyObject {
     func didFetchImages(with result: Result<[Image], Error>)
-    
-    func getImageSuccess(_ image: Image)
 }
 
 // MARK: Router Input (Presenter -> Router)

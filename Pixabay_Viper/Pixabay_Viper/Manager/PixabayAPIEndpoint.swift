@@ -8,7 +8,8 @@
 
 // MARK: - PixabayAPIEndpoint
 enum APIEndpoint: String {
-    case baseURL   = "https://pixabay.com/api/?key=36801194-564b42651b6375c663397a859&image_type=photo"
+    case baseURL   = "https://pixabay.com/api/?key=36801194-564b42651b6375c663397a859&image_type=photo&per_page=16"
     case query     = "&q="
     case category  = "&category="
+    case page      = "&page="
 }
