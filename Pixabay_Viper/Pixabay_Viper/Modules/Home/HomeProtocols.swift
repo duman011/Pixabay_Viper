@@ -26,21 +26,19 @@ protocol ViewToPresenterHomeProtocol: AnyObject {
 protocol PresenterToViewHomeProtocol: AnyObject {
     func onDataFetchSuccess()
     func onDataFetchFailure(_ error: Error?)
+    func indicatorView(animate: Bool)
 }
 
 // MARK: Interactor Input (Presenter -> Interactor)
 protocol PresenterToInteractorHomeProtocol: AnyObject {
     var presenter: InteractorToPresenterHomeProtocol? { get set }
-    
     func fetchImages()
-    
     func retrieveImage(at index: Int)
 }
 
 // MARK: Interactor Output (Interactor -> Presenter)
 protocol InteractorToPresenterHomeProtocol: AnyObject {
-    func fetchImagesSuccess(_ images: [Image])
-    func fetchImagesFailure(_ error: Error?)
+    func didFetchImages(with result: Result<[Image], Error>)
     
     func getImageSuccess(_ image: Image)
 }

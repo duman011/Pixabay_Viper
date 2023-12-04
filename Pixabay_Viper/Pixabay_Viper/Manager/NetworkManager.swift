@@ -51,7 +51,6 @@ final class NetworkManager {
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            
             guard let image = UIImage(data: data) else { return nil }
             cache.setObject(image, forKey: cacheKey)
             return image

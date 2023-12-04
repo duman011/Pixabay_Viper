@@ -13,7 +13,7 @@ final class HomeInteractor: PresenterToInteractorHomeProtocol {
     
    
     // MARK: Properties
-    weak var presenter: InteractorToPresenterHomeProtocol?
+    var presenter: InteractorToPresenterHomeProtocol?
     var images: [Image]?
 
     func fetchImages(){
@@ -21,10 +21,10 @@ final class HomeInteractor: PresenterToInteractorHomeProtocol {
             do {
                 let response = try await NetworkManager.shared.getImages()
                 self.images = response
-                presenter?.fetchImagesSuccess(response)
+                presenter?.didFetchImages(with: .success(response))
                 
             } catch {
-                presenter?.fetchImagesFailure(error)
+                presenter?.didFetchImages(with: .failure(error))
             }
         }
     }

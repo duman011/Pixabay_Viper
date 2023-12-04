@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8319D84D2B1DD0250007A088 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319D84C2B1DD0250007A088 /* UIViewController+Ext.swift */; };
 		838B6A0D2B1D154000FB0F13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838B6A0C2B1D154000FB0F13 /* AppDelegate.swift */; };
 		838B6A0F2B1D154000FB0F13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838B6A0E2B1D154000FB0F13 /* SceneDelegate.swift */; };
 		838B6A162B1D154100FB0F13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 838B6A152B1D154100FB0F13 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8319D84C2B1DD0250007A088 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		838B6A092B1D154000FB0F13 /* Pixabay_Viper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pixabay_Viper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		838B6A0C2B1D154000FB0F13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		838B6A0E2B1D154000FB0F13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				838B6A292B1D175300FB0F13 /* UIImageView+Ext.swift */,
 				838B6A2B2B1D175300FB0F13 /* UIStackView+Ext.swift */,
 				838B6A2A2B1D175300FB0F13 /* UIView+Ext.swift */,
+				8319D84C2B1DD0250007A088 /* UIViewController+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			files = (
 				838B6A492B1D2C0500FB0F13 /* ImageDetailInteractor.swift in Sources */,
 				838B6A2C2B1D175300FB0F13 /* UIImageView+Ext.swift in Sources */,
+				8319D84D2B1DD0250007A088 /* UIViewController+Ext.swift in Sources */,
 				838B6A3F2B1D295600FB0F13 /* HomeVC.swift in Sources */,
 				838B6A4D2B1D356700FB0F13 /* ImageCollectionCell.swift in Sources */,
 				838B6A342B1D272300FB0F13 /* PixabayAPIEndpoint.swift in Sources */,

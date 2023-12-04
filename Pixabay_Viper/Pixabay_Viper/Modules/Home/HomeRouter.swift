@@ -11,12 +11,14 @@ import UIKit
 
 final class HomeRouter:  PresenterToRouterHomeProtocol {
     
+    typealias PresenterProtocol =  ViewToPresenterHomeProtocol & InteractorToPresenterHomeProtocol
+    
     static func createModule() -> UIViewController {
         print("HomeRouter creates the Home module.")
         
         let viewController = HomeVC()
     
-        let presenter: ViewToPresenterHomeProtocol & InteractorToPresenterHomeProtocol = HomePresenter()
+        let presenter: PresenterProtocol = HomePresenter()
         
         viewController.presenter = presenter
         viewController.presenter?.router = HomeRouter()
