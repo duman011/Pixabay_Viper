@@ -42,18 +42,23 @@ final class HomePresenter: ViewToPresenterHomeProtocol{
 
 
 // MARK: - Outputs to view
+// MARK: - Outputs to view
 extension HomePresenter: InteractorToPresenterHomeProtocol {
     func didFetchImages(with result: Result<[Image], Error>) {
-        view?.indicatorView(animate: true)
+        view?.indicatorView(true)
+        
         switch result {
         case .success(let images):
-//            self.imagesList = images
             self.imagesList.append(contentsOf: images)
-            view?.indicatorView(animate: false)
-            view?.onDataFetchSuccess()
+            self.view?.onDataFetchSuccess()
+            
         case .failure(let error):
-            view?.indicatorView(animate: false)
-            view?.onDataFetchFailure(error)
+            self.view?.onDataFetchFailure(error)
         }
+        
+        
+        self.view?.indicatorView(false)
+        
     }
 }
+

@@ -28,7 +28,7 @@ final class HomeVC: UIViewController {
         return collectionView
     }()
     
-    lazy var searchBar: UISearchBar = {
+    private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Search an image"
         searchBar.searchTextField.backgroundColor = .clear
@@ -130,32 +130,36 @@ extension HomeVC: UICollectionViewDelegateFlowLayout  {
 
 extension HomeVC : PresenterToViewHomeProtocol {
     func onDataFetchSuccess() {
-        print("View receives the response from Presenter and updates itself.")
-        DispatchQueue.main.async {
+        Task {
             self.collectionView.reloadData()
         }
     }
     
     func onDataFetchFailure(_ error: Error?) {
         print("View receives the response from Presenter with error: \(String(describing: error))")
-        DispatchQueue.main.async {
+        Task {
             self.collectionView.reloadData()
         }
     }
     
-    func indicatorView(animate: Bool){
-        DispatchQueue.main.async {
-            self.indicatorViewExt(animate: animate)
+    func indicatorView(_ show: Bool){
+        Task{
+            if show {
+                view.activityStartAnimating(activityColor: UIColor.white, backgroundColor: UIColor.black.withAlphaComponent(0.5))
+            } else {
+                view.activityStopAnimating()
+            }
         }
     }
 }
 
 extension HomeVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            presenter?.searchText = searchText
+        
+        if !searchText.isEmpty {
             presenter?.removeLastResults()
-            presenter?.searchImages()
+            presenter?.searchText = searchText
+           // presenter?.searchImages()
         }
     }
     
@@ -181,7 +185,7 @@ extension HomeVC: CategorySelectionVCDelegate {
         presenter?.selectedCategory = category
         presenter?.removeLastResults()
         presenter?.searchText.removeAll()
-        presenter?.searchImages()
         searchBar.setImage(category.icon, for: .bookmark, state: .normal)
+        presenter?.searchImages()
     }
 }

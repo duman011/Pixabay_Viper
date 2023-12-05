@@ -1,43 +1,40 @@
-//
-//  HomeRouter.swift
-//  Pixabay_Viper
-//
-//  Created by Yaşar Duman on 3.12.2023.
-//
+    //
+    //  HomeRouter.swift
+    //  Pixabay_Viper
+    //
+    //  Created by Yaşar Duman on 3.12.2023.
+    //
 
 
-import UIKit
+    import UIKit
 
 
-final class HomeRouter:  PresenterToRouterHomeProtocol {
-    
-    typealias PresenterProtocol =  ViewToPresenterHomeProtocol & InteractorToPresenterHomeProtocol
-    
-    static func createModule() -> UIViewController {
-        print("HomeRouter creates the Home module.")
+    final class HomeRouter:  PresenterToRouterHomeProtocol {
         
-        let viewController = HomeVC()
-    
-        let presenter: PresenterProtocol = HomePresenter()
+        typealias PresenterProtocols =  ViewToPresenterHomeProtocol & InteractorToPresenterHomeProtocol
         
-        viewController.presenter = presenter
-        viewController.presenter?.router = HomeRouter()
-        viewController.presenter?.view = viewController
-        viewController.presenter?.interactor = HomeInteractor()
-        viewController.presenter?.interactor?.presenter = presenter
+        static func createModule() -> UIViewController {            
+            let viewController = HomeVC()
         
-        return viewController
-    }
-    
-    
-    func pushToImageDetail(on view: PresenterToViewHomeProtocol, with image: Image) {
-        print("HomeRouter is instructed to push HomeDetailViewController onto the navigation stack.")
-        let imageDetailViewController = ImageDetailRouter.createModule(with: image)
+            let presenter: PresenterProtocols = HomePresenter()
             
-        let viewController = view as! HomeVC
-        viewController.navigationController?.pushViewController(imageDetailViewController, animated: true)
+            viewController.presenter = presenter
+            viewController.presenter?.router = HomeRouter()
+            viewController.presenter?.view = viewController
+            viewController.presenter?.interactor = HomeInteractor()
+            viewController.presenter?.interactor?.presenter = presenter
+            
+            return viewController
+        }
+        
+        
+        func pushToImageDetail(on view: PresenterToViewHomeProtocol, with image: Image) {
+            let imageDetailViewController = ImageDetailRouter.createModule(with: image)
+                
+            let viewController = view as! HomeVC
+            viewController.navigationController?.pushViewController(imageDetailViewController, animated: true)
+        }
     }
-}
 
 
 

@@ -10,7 +10,6 @@ import UIKit
 final class ImageDetailRouter: PresenterToRouterImageDetailProtocol {
     
     static func createModule(with image: Image) -> UIViewController {
-        print("QuoteDetailRouter creates the QuoteDetail module.")
         let viewController = ImageDetailView()
         
         let presenter: ViewToPresenterImageDetailProtocol & InteractorToPresenterImageDetailProtocol = ImageDetailPresenter()

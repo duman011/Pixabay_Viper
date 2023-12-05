@@ -33,7 +33,7 @@ protocol ViewToPresenterHomeProtocol: AnyObject {
 protocol PresenterToViewHomeProtocol: AnyObject {
     func onDataFetchSuccess()
     func onDataFetchFailure(_ error: Error?)
-    func indicatorView(animate: Bool)
+    func indicatorView(_ show: Bool)
 }
 
 // MARK: Interactor Input (Presenter -> Interactor)

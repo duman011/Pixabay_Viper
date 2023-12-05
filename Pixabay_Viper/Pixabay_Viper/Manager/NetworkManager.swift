@@ -8,7 +8,7 @@
 import UIKit
 
 final class NetworkManager {
-
+    
     // Yaşar Duman Api Key 36801194-564b42651b6375c663397a859
     
     // MARK: - Properties
@@ -16,18 +16,23 @@ final class NetworkManager {
     private let cache = NSCache<NSString, UIImage>()
     private let decoder = JSONDecoder()
     
-    
     // MARK: - Initializer
     private init() {}
     
     // MARK: - Fetch Images
     func getImages(category: Category, query: String? = nil, currentPage: Int) async throws -> [Image] {
-        let endpoint =  APIEndpoint.baseURL.rawValue + APIEndpoint.category.rawValue + category.rawValue.lowercased() + APIEndpoint.query.rawValue + (query ?? "") + APIEndpoint.page.rawValue + currentPage.description
+        let endpoint =  APIEndpoint.baseURL.rawValue +
+                        APIEndpoint.category.rawValue + category.rawValue.lowercased() +
+                        APIEndpoint.query.rawValue + (query ?? "") +
+                        APIEndpoint.page.rawValue + currentPage.description
+        
         guard let url = URL(string: endpoint) else { throw PixabayError.invalidUrl }
         
         let (data, response) = try await URLSession.shared.data(from: url)
         
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw PixabayError.invalidResponse }
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw PixabayError.invalidResponse
+        }
         
         do {
             return try decoder.decode(ImageResponse.self, from: data).images
@@ -42,6 +47,7 @@ final class NetworkManager {
         let cacheKey = NSString(string: urlString)
         
         if let image = cache.object(forKey: cacheKey) { return image }
+        
         guard let url = URL(string: urlString) else { return nil }
         
         do {

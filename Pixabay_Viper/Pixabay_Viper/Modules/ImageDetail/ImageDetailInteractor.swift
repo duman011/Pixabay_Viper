@@ -14,7 +14,6 @@ final class ImageDetailInteractor: PresenterToInteractorImageDetailProtocol {
     var image: Image?
     
     func fetchDataFromURL() {
-        print("Interactor receives the request from Presenter to get image data from the server.")
         presenter?.dataFetchSucceeded(image: image!)
     }
 }

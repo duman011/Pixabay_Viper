@@ -25,7 +25,7 @@ final class ImageDetailView: UIViewController {
         return label
     }()
     
-    lazy var userImage: UIImageView = {
+    private lazy var userImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -33,72 +33,72 @@ final class ImageDetailView: UIViewController {
         return imageView
     }()
     
-    lazy var userName: UILabel = {
+    private lazy var userName: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
-    lazy var viewsImage: UIImageView = {
+    private lazy var viewsImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "eye.circle")
         imageView.anchor(size: .init(width: 35, height: 35))
         return imageView
     }()
     
-    lazy var viewsCount: UILabel = {
+    private lazy var viewsCount: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
-    lazy var downloadsImage: UIImageView = {
+    private lazy var downloadsImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "arrow.down.circle")
         imageView.anchor(size: .init(width: 35, height: 35))
         return imageView
     }()
     
-    lazy var downloadsCount: UILabel = {
+    private lazy var downloadsCount: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
-    lazy var collectionsImage: UIImageView = {
+    private lazy var collectionsImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "bookmark.circle")
         imageView.anchor(size: .init(width: 35, height: 35))
         return imageView
     }()
     
-    lazy var collectionsCount: UILabel = {
+    private lazy var collectionsCount: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
-    lazy var likesImage: UIImageView = {
+    private lazy var likesImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "heart.circle")
         imageView.anchor(size: .init(width: 35, height: 35))
         return imageView
     }()
     
-    lazy var likesCount: UILabel = {
+    private lazy var likesCount: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
-    lazy var commentsImage: UIImageView = {
+    private lazy var commentsImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "bubble.circle")
         imageView.anchor(size: .init(width: 35, height: 35))
         return imageView
     }()
     
-    lazy var commentsCount: UILabel = {
+    private lazy var commentsCount: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         return label
@@ -111,7 +111,6 @@ final class ImageDetailView: UIViewController {
         presenter?.viewDidLoad()
     }
 }
-
 
 
 extension ImageDetailView: PresenterToViewImageDetailProtocol {
@@ -216,7 +215,5 @@ extension ImageDetailView {
                          padding: .init(top: 10,
                                         leading: 10,
                                         trailing: 20))
-        
-        
     }
 }

@@ -24,8 +24,6 @@ final class ImageDetailPresenter: ViewToPresenterImageDetailProtocol {
 extension ImageDetailPresenter: InteractorToPresenterImageDetailProtocol {
    
     func dataFetchSucceeded(image: Image) {
-        print("Presenter receives the result from Interactor after it's done its job.")
-
         view?.onGetDataFromURLSuccess(image)
     }
     

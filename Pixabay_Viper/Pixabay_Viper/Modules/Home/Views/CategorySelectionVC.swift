@@ -42,7 +42,9 @@ class CategorySelectionVC: UIViewController {
 extension CategorySelectionVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.categorySelected(Category.allCases[indexPath.item])
-        dismiss(animated: true)
+        Task {
+            dismiss(animated: true)
+        }
     }
 }
 

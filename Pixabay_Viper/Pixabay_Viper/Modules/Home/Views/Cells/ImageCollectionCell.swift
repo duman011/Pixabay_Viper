@@ -7,18 +7,18 @@
 
 import UIKit
 
-class ImageCollectionCell: UICollectionViewCell {
+final class ImageCollectionCell: UICollectionViewCell {
     //MARK: - Cell's Identifier
     static let identifier = "ImageCollectionCell"
     
     //MARK: - UI Elements
-    lazy var userContainerView: UIView = {
+    private lazy var userContainerView: UIView = {
         let container = UIView()
         container.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         return container
     }()
     
-    lazy var userName: UILabel = {
+    private lazy var userName: UILabel = {
         let name = UILabel()
         name.textColor = .white
         name.numberOfLines = 1
@@ -27,7 +27,7 @@ class ImageCollectionCell: UICollectionViewCell {
         return name
     }()
     
-    lazy var userImage: UIImageView = {
+    private lazy var userImage: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 18
         imageView.contentMode = .scaleAspectFill
@@ -35,7 +35,7 @@ class ImageCollectionCell: UICollectionViewCell {
         return imageView
     }()
     
-    lazy var userImagePost: UIImageView = {
+    private lazy var userImagePost: UIImageView = {
         let post = UIImageView()
         post.layer.cornerRadius = 30
         post.contentMode = .scaleAspectFill

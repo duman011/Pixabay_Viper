@@ -7,18 +7,18 @@
 
 import UIKit
 
-class CategoryCollectionCell: UICollectionViewCell {
+final class CategoryCollectionCell: UICollectionViewCell {
     //MARK: - Cell's Identifier
     static let identifier = "CategoryCollectionCell"
     
     
     //MARK: - UI Elements
-    lazy var categoryIcon: UIImageView = {
+    private lazy var categoryIcon: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
     
-    lazy var categoryTitle: UILabel = {
+    private lazy var categoryTitle: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
