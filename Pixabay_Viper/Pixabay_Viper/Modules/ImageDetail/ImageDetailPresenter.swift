@@ -5,8 +5,6 @@
 //  Created by Yaşar Duman on 3.12.2023.
 //
 
-import Foundation
-
 
 final class ImageDetailPresenter: ViewToPresenterImageDetailProtocol {
     
@@ -22,7 +20,6 @@ final class ImageDetailPresenter: ViewToPresenterImageDetailProtocol {
 }
 
 extension ImageDetailPresenter: InteractorToPresenterImageDetailProtocol {
-   
     func dataFetchSucceeded(image: Image) {
         view?.onGetDataFromURLSuccess(image)
     }
@@ -31,8 +28,4 @@ extension ImageDetailPresenter: InteractorToPresenterImageDetailProtocol {
         print("Presenter receives the result from Interactor after it's done its job.")
         view?.onGetDataFromURLFailure(image)
     }
-    
-    
-  
-    
 }

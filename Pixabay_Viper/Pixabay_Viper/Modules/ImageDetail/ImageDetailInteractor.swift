@@ -5,7 +5,6 @@
 //  Created by Yaşar Duman on 3.12.2023.
 //
 
-import Foundation
 
 final class ImageDetailInteractor: PresenterToInteractorImageDetailProtocol {
     

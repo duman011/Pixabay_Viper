@@ -50,6 +50,5 @@ protocol InteractorToPresenterHomeProtocol: AnyObject {
 // MARK: Router Input (Presenter -> Router)
 protocol PresenterToRouterHomeProtocol: AnyObject {
     static func createModule() -> UIViewController
-    
     func pushToImageDetail(on view: PresenterToViewHomeProtocol, with image: Image)
 }

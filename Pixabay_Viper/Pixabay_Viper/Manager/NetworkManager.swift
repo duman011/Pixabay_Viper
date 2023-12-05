@@ -7,7 +7,12 @@
 
 import UIKit
 
-final class NetworkManager {
+protocol NetworkManagerInterface: AnyObject{
+    func getImages(category: Category, query: String?, currentPage: Int) async throws -> [Image]
+    func downloadImage(from urlString: String) async -> UIImage?
+}
+
+final class NetworkManager: NetworkManagerInterface {
     
     // Yaşar Duman Api Key 36801194-564b42651b6375c663397a859
     

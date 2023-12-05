@@ -6,15 +6,13 @@
 //
 
 
-import Foundation
-
 final class HomePresenter: ViewToPresenterHomeProtocol{
     
     // MARK: Properties
     weak var view: PresenterToViewHomeProtocol?
     var interactor: PresenterToInteractorHomeProtocol?
     var router: PresenterToRouterHomeProtocol?
-
+    
     var imagesList: [Image] = []
     var selectedCategory: Category = .all
     var currentPage = 1

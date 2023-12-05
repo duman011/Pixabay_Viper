@@ -140,6 +140,7 @@ extension ImageDetailView: PresenterToViewImageDetailProtocol {
 // MARK: - UI Setup
 extension ImageDetailView {
     private func setupUI() {
+        view.accessibilityIdentifier = "ImageDetailView"
         view.backgroundColor = .secondarySystemBackground
         view.addSubviewsExt(imageView,
                             imageTags,

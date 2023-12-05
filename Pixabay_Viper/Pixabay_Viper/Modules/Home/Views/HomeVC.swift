@@ -30,6 +30,7 @@ final class HomeVC: UIViewController {
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.searchTextField.accessibilityIdentifier = "searchTextField"
         searchBar.placeholder = "Search an image"
         searchBar.searchTextField.backgroundColor = .clear
         searchBar.showsBookmarkButton = true

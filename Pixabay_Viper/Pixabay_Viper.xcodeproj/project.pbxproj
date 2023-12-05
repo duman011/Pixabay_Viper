@@ -35,10 +35,24 @@
 		838B6A4A2B1D2C0500FB0F13 /* ImageDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838B6A452B1D2C0500FB0F13 /* ImageDetailRouter.swift */; };
 		838B6A4D2B1D356700FB0F13 /* ImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838B6A4C2B1D356700FB0F13 /* ImageCollectionCell.swift */; };
 		83AE27902B1F2550009F6E17 /* Pixabay_ViperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE278F2B1F2550009F6E17 /* Pixabay_ViperTests.swift */; };
+		83AE27992B1F2652009F6E17 /* MockHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE27982B1F2652009F6E17 /* MockHomeVC.swift */; };
+		83AE279B2B1F27BF009F6E17 /* MockHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE279A2B1F27BF009F6E17 /* MockHomeRouter.swift */; };
+		83AE279D2B1F2926009F6E17 /* MockHomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE279C2B1F2926009F6E17 /* MockHomeInteractor.swift */; };
+		83AE279F2B1F29E5009F6E17 /* HomePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE279E2B1F29E5009F6E17 /* HomePresenterTests.swift */; };
+		83AE27A22B1F2FED009F6E17 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE27A12B1F2FED009F6E17 /* MockNetworkManager.swift */; };
+		83AE27AA2B1F7302009F6E17 /* Pixabay_ViperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE27A92B1F7302009F6E17 /* Pixabay_ViperUITests.swift */; };
+		83AE27AC2B1F7302009F6E17 /* Pixabay_ViperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE27AB2B1F7302009F6E17 /* Pixabay_ViperUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		83AE27912B1F2550009F6E17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 838B6A012B1D154000FB0F13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 838B6A082B1D154000FB0F13;
+			remoteInfo = Pixabay_Viper;
+		};
+		83AE27AD2B1F7302009F6E17 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 838B6A012B1D154000FB0F13 /* Project object */;
 			proxyType = 1;
@@ -79,6 +93,14 @@
 		838B6A4C2B1D356700FB0F13 /* ImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionCell.swift; sourceTree = "<group>"; };
 		83AE278D2B1F2550009F6E17 /* Pixabay_ViperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pixabay_ViperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83AE278F2B1F2550009F6E17 /* Pixabay_ViperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixabay_ViperTests.swift; sourceTree = "<group>"; };
+		83AE27982B1F2652009F6E17 /* MockHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeVC.swift; sourceTree = "<group>"; };
+		83AE279A2B1F27BF009F6E17 /* MockHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeRouter.swift; sourceTree = "<group>"; };
+		83AE279C2B1F2926009F6E17 /* MockHomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeInteractor.swift; sourceTree = "<group>"; };
+		83AE279E2B1F29E5009F6E17 /* HomePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterTests.swift; sourceTree = "<group>"; };
+		83AE27A12B1F2FED009F6E17 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		83AE27A72B1F7302009F6E17 /* Pixabay_ViperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pixabay_ViperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83AE27A92B1F7302009F6E17 /* Pixabay_ViperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixabay_ViperUITests.swift; sourceTree = "<group>"; };
+		83AE27AB2B1F7302009F6E17 /* Pixabay_ViperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixabay_ViperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +112,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		83AE278A2B1F2550009F6E17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83AE27A42B1F7302009F6E17 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,6 +151,7 @@
 			children = (
 				838B6A0B2B1D154000FB0F13 /* Pixabay_Viper */,
 				83AE278E2B1F2550009F6E17 /* Pixabay_ViperTests */,
+				83AE27A82B1F7302009F6E17 /* Pixabay_ViperUITests */,
 				838B6A0A2B1D154000FB0F13 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -131,6 +161,7 @@
 			children = (
 				838B6A092B1D154000FB0F13 /* Pixabay_Viper.app */,
 				83AE278D2B1F2550009F6E17 /* Pixabay_ViperTests.xctest */,
+				83AE27A72B1F7302009F6E17 /* Pixabay_ViperUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,6 +282,7 @@
 		83AE278E2B1F2550009F6E17 /* Pixabay_ViperTests */ = {
 			isa = PBXGroup;
 			children = (
+				83AE27A02B1F2FDB009F6E17 /* Manager */,
 				83AE27962B1F258F009F6E17 /* Modules */,
 				83AE278F2B1F2550009F6E17 /* Pixabay_ViperTests.swift */,
 			);
@@ -260,8 +292,37 @@
 		83AE27962B1F258F009F6E17 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				83AE27972B1F2632009F6E17 /* Home */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		83AE27972B1F2632009F6E17 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				83AE27982B1F2652009F6E17 /* MockHomeVC.swift */,
+				83AE279A2B1F27BF009F6E17 /* MockHomeRouter.swift */,
+				83AE279C2B1F2926009F6E17 /* MockHomeInteractor.swift */,
+				83AE279E2B1F29E5009F6E17 /* HomePresenterTests.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		83AE27A02B1F2FDB009F6E17 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				83AE27A12B1F2FED009F6E17 /* MockNetworkManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		83AE27A82B1F7302009F6E17 /* Pixabay_ViperUITests */ = {
+			isa = PBXGroup;
+			children = (
+				83AE27A92B1F7302009F6E17 /* Pixabay_ViperUITests.swift */,
+				83AE27AB2B1F7302009F6E17 /* Pixabay_ViperUITestsLaunchTests.swift */,
+			);
+			path = Pixabay_ViperUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +363,24 @@
 			productReference = 83AE278D2B1F2550009F6E17 /* Pixabay_ViperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		83AE27A62B1F7302009F6E17 /* Pixabay_ViperUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83AE27AF2B1F7302009F6E17 /* Build configuration list for PBXNativeTarget "Pixabay_ViperUITests" */;
+			buildPhases = (
+				83AE27A32B1F7302009F6E17 /* Sources */,
+				83AE27A42B1F7302009F6E17 /* Frameworks */,
+				83AE27A52B1F7302009F6E17 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83AE27AE2B1F7302009F6E17 /* PBXTargetDependency */,
+			);
+			name = Pixabay_ViperUITests;
+			productName = Pixabay_ViperUITests;
+			productReference = 83AE27A72B1F7302009F6E17 /* Pixabay_ViperUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -316,6 +395,10 @@
 						CreatedOnToolsVersion = 15.0.1;
 					};
 					83AE278C2B1F2550009F6E17 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 838B6A082B1D154000FB0F13;
+					};
+					83AE27A62B1F7302009F6E17 = {
 						CreatedOnToolsVersion = 15.0.1;
 						TestTargetID = 838B6A082B1D154000FB0F13;
 					};
@@ -336,6 +419,7 @@
 			targets = (
 				838B6A082B1D154000FB0F13 /* Pixabay_Viper */,
 				83AE278C2B1F2550009F6E17 /* Pixabay_ViperTests */,
+				83AE27A62B1F7302009F6E17 /* Pixabay_ViperUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -352,6 +436,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		83AE278B2B1F2550009F6E17 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83AE27A52B1F7302009F6E17 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -396,7 +487,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83AE27A22B1F2FED009F6E17 /* MockNetworkManager.swift in Sources */,
+				83AE279D2B1F2926009F6E17 /* MockHomeInteractor.swift in Sources */,
+				83AE279B2B1F27BF009F6E17 /* MockHomeRouter.swift in Sources */,
 				83AE27902B1F2550009F6E17 /* Pixabay_ViperTests.swift in Sources */,
+				83AE279F2B1F29E5009F6E17 /* HomePresenterTests.swift in Sources */,
+				83AE27992B1F2652009F6E17 /* MockHomeVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83AE27A32B1F7302009F6E17 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83AE27AC2B1F7302009F6E17 /* Pixabay_ViperUITestsLaunchTests.swift in Sources */,
+				83AE27AA2B1F7302009F6E17 /* Pixabay_ViperUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +512,11 @@
 			isa = PBXTargetDependency;
 			target = 838B6A082B1D154000FB0F13 /* Pixabay_Viper */;
 			targetProxy = 83AE27912B1F2550009F6E17 /* PBXContainerItemProxy */;
+		};
+		83AE27AE2B1F7302009F6E17 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 838B6A082B1D154000FB0F13 /* Pixabay_Viper */;
+			targetProxy = 83AE27AD2B1F7302009F6E17 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -633,6 +743,40 @@
 			};
 			name = Release;
 		};
+		83AE27B02B1F7302009F6E17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ACB3S45S75;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yasarduman.Pixabay-ViperUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Pixabay_Viper;
+			};
+			name = Debug;
+		};
+		83AE27B12B1F7302009F6E17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ACB3S45S75;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yasarduman.Pixabay-ViperUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Pixabay_Viper;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -659,6 +803,15 @@
 			buildConfigurations = (
 				83AE27942B1F2550009F6E17 /* Debug */,
 				83AE27952B1F2550009F6E17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83AE27AF2B1F7302009F6E17 /* Build configuration list for PBXNativeTarget "Pixabay_ViperUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83AE27B02B1F7302009F6E17 /* Debug */,
+				83AE27B12B1F7302009F6E17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
