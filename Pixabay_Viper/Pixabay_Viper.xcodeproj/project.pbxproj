@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58154B342B20994B008A65EB /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58154B332B20994B008A65EB /* SpinnerViewController.swift */; };
 		58B3EE852B1DF021004A783B /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3EE842B1DF021004A783B /* UIImage+Ext.swift */; };
 		58B3EE872B1E06E4004A783B /* CategorySelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3EE862B1E06E4004A783B /* CategorySelectionVC.swift */; };
 		58B3EE892B1E0896004A783B /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3EE882B1E0896004A783B /* CategoryCollectionCell.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58154B332B20994B008A65EB /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		58B3EE842B1DF021004A783B /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		58B3EE862B1E06E4004A783B /* CategorySelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionVC.swift; sourceTree = "<group>"; };
 		58B3EE882B1E0896004A783B /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				838B6A272B1D171900FB0F13 /* PixabayError.swift */,
+				58154B332B20994B008A65EB /* SpinnerViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				838B6A492B1D2C0500FB0F13 /* ImageDetailInteractor.swift in Sources */,
+				58154B342B20994B008A65EB /* SpinnerViewController.swift in Sources */,
 				838B6A2C2B1D175300FB0F13 /* UIImageView+Ext.swift in Sources */,
 				838B6A3F2B1D295600FB0F13 /* HomeVC.swift in Sources */,
 				838B6A4D2B1D356700FB0F13 /* ImageCollectionCell.swift in Sources */,

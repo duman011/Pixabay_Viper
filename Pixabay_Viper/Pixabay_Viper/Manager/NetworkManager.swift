@@ -30,7 +30,7 @@ final class NetworkManager: NetworkManagerInterface {
                         APIEndpoint.category.rawValue + category.rawValue.lowercased() +
                         APIEndpoint.query.rawValue + (query ?? "") +
                         APIEndpoint.page.rawValue + currentPage.description
-        
+        print("DEBUG: \(endpoint)")
         guard let url = URL(string: endpoint) else { throw PixabayError.invalidUrl }
         
         let (data, response) = try await URLSession.shared.data(from: url)

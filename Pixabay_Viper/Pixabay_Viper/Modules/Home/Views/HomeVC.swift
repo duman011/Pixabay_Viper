@@ -14,8 +14,13 @@ final class HomeVC: UIViewController {
     // MARK: - Properties
     var presenter: ViewToPresenterHomeProtocol?
     
+    lazy var spinner: SpinnerViewController = {
+        let spinner = SpinnerViewController()
+        return spinner
+    }()
+    
     private lazy var collectionView: UICollectionView = {
-     
+        
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         
@@ -53,11 +58,11 @@ final class HomeVC: UIViewController {
 
 // MARK: - UI Setup
 extension HomeVC {
-    private func setupUI() {      
+    private func setupUI() {
         configureNavTitle()
         view.backgroundColor = .systemBackground
         view.addSubviewsExt(searchBar, collectionView)
-        searchBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, 
+        searchBar.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                          leading: view.safeAreaLayoutGuide.leadingAnchor,
                          trailing: view.safeAreaLayoutGuide.trailingAnchor,
                          padding: .init(leading: 10, trailing: 10))
@@ -72,30 +77,29 @@ extension HomeVC {
     private func configureNavTitle() {
         let titleLabel = UILabel()
         titleLabel.text = "Pixabay API"
-
+        
         if let customFont = UIFont(name: "Agbalumo-Regular", size: 30) {
             titleLabel.font = customFont
-       
+            
             self.navigationItem.titleView = titleLabel
             
             let gradient = UIImage.gradientImage(bounds: view.bounds, colors: [.gradientBorder1, .gradientBorder2])
             let gradientColor = UIColor(patternImage: gradient)
             titleLabel.textColor = gradientColor
-      
+            
         }
-       
+        
     }
 }
 
 // MARK: - UITableView Delegate & Data Source
 extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let presenter {
-            let lastCellIndex = presenter.imagesList.count - 1
-            if indexPath.item == lastCellIndex {
-                presenter.currentPage += 1
-                presenter.searchImages()
-            }
+        guard let presenter else { return }
+        
+        if (indexPath.item == presenter.imagesList.count - 1) && (presenter.imagesList.count == presenter.currentPage * 10){
+            presenter.currentPage += 1
+            presenter.searchImages()
         }
     }
     
@@ -104,19 +108,20 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionCell.identifier, for: indexPath) as? ImageCollectionCell else {
-            return UICollectionViewCell()
-        }
-        guard let image = presenter?.imagesList[indexPath.item] else {
-            return UICollectionViewCell()
-        }
+        
+        guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionCell.identifier, for: indexPath) as? ImageCollectionCell else { return .init() }
+        
+        guard let image = presenter?.imagesList[indexPath.item] else { return .init() }
+        
         cell.updateUI(image)
+        
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter?.didSelectRow(at: indexPath.row)
     }
+    
 }
 
 extension HomeVC: UICollectionViewDelegateFlowLayout  {
@@ -125,7 +130,7 @@ extension HomeVC: UICollectionViewDelegateFlowLayout  {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-          return 20
+        return 20
     }
 }
 
@@ -144,11 +149,20 @@ extension HomeVC : PresenterToViewHomeProtocol {
     }
     
     func indicatorView(_ show: Bool){
-        Task{
-            if show {
-                view.activityStartAnimating(activityColor: UIColor.white, backgroundColor: UIColor.black.withAlphaComponent(0.5))
-            } else {
-                view.activityStopAnimating()
+        if show {
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                addChild(spinner)
+                spinner.view.frame = view.frame
+                view.addSubview(spinner.view)
+                spinner.didMove(toParent: self)
+            }
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                spinner.willMove(toParent: nil)
+                spinner.view.removeFromSuperview()
+                spinner.removeFromParent()
             }
         }
     }
@@ -156,18 +170,24 @@ extension HomeVC : PresenterToViewHomeProtocol {
 
 extension HomeVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if !searchText.isEmpty {
-            presenter?.removeLastResults()
-            presenter?.searchText = searchText
-           // presenter?.searchImages()
+        guard let presenter else { return }
+        if searchText.isEmpty {
+            if presenter.searchText.isEmpty { return }
+            presenter.removeLastResults()
+            presenter.searchImages()
         }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        presenter?.removeLastResults()
-        presenter?.searchImages()
-        searchBar.text?.removeAll()
+        if let searchText = searchBar.text {
+            collectionView.setContentOffset(.zero, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) { [weak self] in
+                guard let self else { return }
+                presenter?.removeLastResults()
+                presenter?.searchText = searchText
+                presenter?.searchImages()
+            }
+        }
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
@@ -183,10 +203,13 @@ extension HomeVC: UISearchBarDelegate {
 
 extension HomeVC: CategorySelectionVCDelegate {
     func categorySelected(_ category: Category) {
-        presenter?.selectedCategory = category
-        presenter?.removeLastResults()
-        presenter?.searchText.removeAll()
+        collectionView.setContentOffset(.zero, animated: true)
         searchBar.setImage(category.icon, for: .bookmark, state: .normal)
-        presenter?.searchImages()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) { [weak self] in
+            guard let self else { return }
+            presenter?.removeLastResults()
+            presenter?.selectedCategory = category
+            presenter?.searchImages()
+        }
     }
 }

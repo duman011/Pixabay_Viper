@@ -157,31 +157,3 @@ extension CGSize {
         self.init(width: widthSize, height: heightSize)
     }
 }
-
-
-// MARK: - UIActivityIndicatorView
-extension UIView{
-    func activityStartAnimating(activityColor: UIColor, backgroundColor: UIColor) {
-        let backgroundView = UIView()
-        backgroundView.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-        backgroundView.backgroundColor = backgroundColor
-        backgroundView.tag = 475647
-        
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.center = self.center
-        activityIndicator.style = UIActivityIndicatorView.Style.large
-        activityIndicator.color = activityColor
-        activityIndicator.startAnimating()
-        self.isUserInteractionEnabled = false
-        
-        backgroundView.addSubview(activityIndicator)
-        self.addSubview(backgroundView)
-    }
-
-    func activityStopAnimating() {
-        if let background = viewWithTag(475647){
-            background.removeFromSuperview()
-        }
-        self.isUserInteractionEnabled = true
-    }
-}

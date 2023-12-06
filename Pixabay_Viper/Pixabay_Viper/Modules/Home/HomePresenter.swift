@@ -15,8 +15,8 @@ final class HomePresenter: ViewToPresenterHomeProtocol{
     
     var imagesList: [Image] = []
     var selectedCategory: Category = .all
-    var currentPage = 1
     var searchText: String = ""
+    var currentPage = 1
     
     // MARK: Inputs from view
     func viewDidLoad() {
@@ -24,8 +24,9 @@ final class HomePresenter: ViewToPresenterHomeProtocol{
     }
     
     func removeLastResults() {
-        currentPage = 1
         imagesList.removeAll()
+        currentPage = 1
+        searchText.removeAll()
     }
     
     func searchImages() {
@@ -40,7 +41,6 @@ final class HomePresenter: ViewToPresenterHomeProtocol{
 
 
 // MARK: - Outputs to view
-// MARK: - Outputs to view
 extension HomePresenter: InteractorToPresenterHomeProtocol {
     func didFetchImages(with result: Result<[Image], Error>) {
         view?.indicatorView(true)
@@ -49,13 +49,11 @@ extension HomePresenter: InteractorToPresenterHomeProtocol {
         case .success(let images):
             self.imagesList.append(contentsOf: images)
             self.view?.onDataFetchSuccess()
-            
+            self.view?.indicatorView(false)
         case .failure(let error):
             self.view?.onDataFetchFailure(error)
+            self.view?.indicatorView(false)
         }
-        
-        
-        self.view?.indicatorView(false)
         
     }
 }
